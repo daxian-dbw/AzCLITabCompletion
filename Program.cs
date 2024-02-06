@@ -1,4 +1,6 @@
-﻿namespace AzCLI.Help.Parser;
+﻿using System.Text.Json;
+
+namespace AzCLI.Help.Parser;
 
 internal class Program
 {
@@ -35,6 +37,29 @@ public class Option
     }
 }
 
+public enum EntryType
+{
+    Group,
+    Command
+}
+
+public class EntryInfo
+{
+    public string Name { get; }
+    public string Description { get; }
+    public EntryType Type { get; }
+
+    public EntryInfo(string name, string description, EntryType type)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(name);
+        ArgumentException.ThrowIfNullOrEmpty(description);
+
+        Name = name;
+        Description = description;
+        Type = type;
+    }
+}
+
 public abstract class CommandBase
 {
     public string Name { get; }
@@ -52,16 +77,45 @@ public abstract class CommandBase
 
 public sealed class Group : CommandBase
 {
-    public List<string> SubGroups { get; }
-    public List<Command> Commands { get; }
+    private readonly string _path;
+    private readonly Dictionary<string, Tuple<EntryInfo, CommandBase>> _commands;
+    public List<EntryInfo> EntryInfos { get; }
 
-    public Group(string name, string description, List<CommandBase> commands)
+    public Group(string name, string description, string path, List<EntryInfo> entryInfos)
         : base(name, description)
     {
-        ArgumentNullException.ThrowIfNull(commands);
-        ArgumentOutOfRangeException.ThrowIfZero(commands.Count);
+        ArgumentException.ThrowIfNullOrEmpty(path);
+        ArgumentNullException.ThrowIfNull(entryInfos);
+        ArgumentOutOfRangeException.ThrowIfZero(entryInfos.Count);
 
-        Commands = commands;
+        _path = path;
+        _commands = new(StringComparer.OrdinalIgnoreCase);
+        foreach (var entryInfo in entryInfos)
+        {
+            _commands.Add(entryInfo.Name, Tuple.Create(entryInfo, (CommandBase)null));
+        }
+
+        EntryInfos = entryInfos;
+    }
+
+    public CommandBase GetChildCommand(string name)
+    {
+        if (_commands.TryGetValue(name, out var tuple))
+        {
+            var entryInfo = tuple.Item1;
+            if (entryInfo.Type is EntryType.Group)
+            {
+                string groupPath = Path.Combine(_path, name);
+                string file = Path.Combine(groupPath, "group_entries.json");
+                var entries = JsonSerializer.Deserialize<List<EntryInfo>>(File.OpenRead(file));
+                return new Group(entryInfo.Name, entryInfo.Description, groupPath, entries);
+            }
+
+            string commandPath = Path.Combine(_path, $"{name}.json");
+            return JsonSerializer.Deserialize<Command>(File.OpenRead(commandPath));
+        }
+
+        return null;
     }
 }
 
