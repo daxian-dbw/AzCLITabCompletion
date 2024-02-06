@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.Text.Json;
 
 namespace AzCLI.Help.Parser;
 
@@ -136,5 +138,31 @@ public sealed class Command : CommandBase
 
 public class HelpParser
 {
-    public Group ParseGroup()
+    private List<string> GetHelpText(string argument)
+    {
+        ProcessStartInfo startInfo = new ProcessStartInfo()
+        {
+            FileName = "az",
+            Arguments = argument,
+            RedirectStandardOutput = true,
+        };
+
+        using var process = new Process() { StartInfo = startInfo };
+        List<string> text = new();
+
+        try
+        {
+            process.Start();
+                        
+        }
+        catch (Win32Exception)
+        {
+
+        }
+    }
+
+    public void ParseGroup(string groupName, string baseCommand, string currentPath)
+    {
+        
+    }
 }
