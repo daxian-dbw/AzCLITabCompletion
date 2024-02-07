@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace AzCLI.Help.Parser;
 
@@ -48,17 +50,19 @@ public enum EntryType
 public class EntryInfo
 {
     public string Name { get; }
-    public string Description { get; }
     public EntryType Type { get; }
+    public string Attribute { get; }
+    public string Description { get; set; }
 
-    public EntryInfo(string name, string description, EntryType type)
+    public EntryInfo(string name, EntryType type, string description, string attribute)
     {
         ArgumentException.ThrowIfNullOrEmpty(name);
         ArgumentException.ThrowIfNullOrEmpty(description);
 
         Name = name;
-        Description = description;
         Type = type;
+        Description = description;
+        Attribute = attribute;
     }
 }
 
@@ -136,33 +140,126 @@ public sealed class Command : CommandBase
     }
 }
 
-public class HelpParser
+public partial class HelpParser
 {
+    private Regex _pattern = MatchCommandRegex();
+
     private List<string> GetHelpText(string argument)
     {
-        ProcessStartInfo startInfo = new ProcessStartInfo()
-        {
-            FileName = "az",
-            Arguments = argument,
-            RedirectStandardOutput = true,
-        };
-
-        using var process = new Process() { StartInfo = startInfo };
-        List<string> text = new();
-
         try
         {
+            using var process = new Process()
+            {
+                StartInfo = new ProcessStartInfo()
+                {
+                    FileName = "az",
+                    Arguments = $"{argument} --help",
+                    RedirectStandardOutput = true,
+                }
+            };
+
             process.Start();
-                        
+            List<string> output = [];
+
+            string line;
+            while ((line = process.StandardOutput.ReadLine()) is not null)
+            {
+                output.Add(line);
+            }
+
+            process.WaitForExit();
+            return output;
         }
-        catch (Win32Exception)
+        catch (Win32Exception e)
         {
-
+            throw new ApplicationException($"Failed to run 'az {argument}': {e.Message}", e);
         }
     }
 
-    public void ParseGroup(string groupName, string baseCommand, string currentPath)
+    public void ParseGroup(string group, string baseCommand, string currentPath)
     {
-        
+        string command = $"{baseCommand} {group}";
+        string newPath = Path.Combine(currentPath, group);
+
+        List<string> help = GetHelpText(command);
+        Directory.CreateDirectory(newPath);
+
+        bool inSubgroups = false, inCommands = false;
+        int descIndex = -1;
+        List<EntryInfo> entries = [];
+
+        foreach (string line in help)
+        {
+            string currLine = line.TrimEnd();
+            if (currLine.Equals("Subgroups:", StringComparison.Ordinal))
+            {
+                // Getting to the 'Subgroups' section.
+                inSubgroups = true;
+                continue;
+            }
+
+            if (currLine.Equals("Commands:", StringComparison.Ordinal))
+            {
+                // Getting to the 'Commands' section.
+                inCommands = true;
+                continue;
+            }
+
+            if (inSubgroups || inCommands)
+            {
+                if (currLine == string.Empty)
+                {
+                    // Reached the end of a section.
+                    inSubgroups = inCommands = false;
+                    continue;
+                }
+
+                Match match = _pattern.Match(currLine);
+                if (match.Success)
+                {
+                    entries.Add(new EntryInfo(
+                        name: match.Groups["name"].Value,
+                        type: inSubgroups ? EntryType.Group : EntryType.Command,
+                        description: match.Groups["desc"].Value,
+                        attribute: match.Groups.TryGetValue("attr", out var v) ? v.Value : null));
+
+                    descIndex = match.Groups["desc"].Index;
+                    continue;
+                }
+
+                string continuedDesc = GetContinuedDescription(currLine, descIndex);
+                if (continuedDesc is not null)
+                {
+                    EntryInfo entry = entries[^1];
+                    entry.Description += $" {continuedDesc}";
+                }
+            }
+        }
+
+        static string GetContinuedDescription(string line, int descIndex)
+        {
+            if (line.Length > descIndex)
+            {
+                bool prefixedWithSpaces = true;
+                for (int i = 0; i < descIndex; i++)
+                {
+                    if (line[i] is not ' ')
+                    {
+                        prefixedWithSpaces = false;
+                        break;
+                    }
+                }
+
+                if (prefixedWithSpaces && line[descIndex] is not ' ')
+                {
+                    return line.Trim();
+                }
+            }
+
+            return null;
+        }
     }
+
+    [GeneratedRegex(@"^ {4}(?<name>[a-z0-9-]+) +(?<attr>\[[a-zA-Z]+\] )?\: (?<desc>\w+.*)$")]
+    private static partial Regex MatchCommandRegex();
 }
