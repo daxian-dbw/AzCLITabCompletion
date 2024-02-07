@@ -142,9 +142,9 @@ public sealed class Command : CommandBase
 
 public partial class HelpParser
 {
-    private Regex _pattern = MatchCommandRegex();
+    private readonly Regex _pattern = MatchCommandRegex();
 
-    private List<string> GetHelpText(string argument)
+    private static List<string> GetHelpText(string argument)
     {
         try
         {
@@ -176,10 +176,33 @@ public partial class HelpParser
         }
     }
 
-    public void ParseGroup(string group, string baseCommand, string currentPath)
+    private static string GetContinuedDescription(string line, int descIndex)
+    {
+        if (line.Length > descIndex)
+        {
+            bool prefixedWithSpaces = true;
+            for (int i = 0; i < descIndex; i++)
+            {
+                if (line[i] is not ' ')
+                {
+                    prefixedWithSpaces = false;
+                    break;
+                }
+            }
+
+            if (prefixedWithSpaces && line[descIndex] is not ' ')
+            {
+                return line.Trim();
+            }
+        }
+
+        return null;
+    }
+
+    public void ParseGroup(string group, string baseCommand, string path)
     {
         string command = $"{baseCommand} {group}";
-        string newPath = Path.Combine(currentPath, group);
+        string newPath = Path.Combine(path, group);
 
         List<string> help = GetHelpText(command);
         Directory.CreateDirectory(newPath);
@@ -235,31 +258,11 @@ public partial class HelpParser
                 }
             }
         }
-
-        static string GetContinuedDescription(string line, int descIndex)
-        {
-            if (line.Length > descIndex)
-            {
-                bool prefixedWithSpaces = true;
-                for (int i = 0; i < descIndex; i++)
-                {
-                    if (line[i] is not ' ')
-                    {
-                        prefixedWithSpaces = false;
-                        break;
-                    }
-                }
-
-                if (prefixedWithSpaces && line[descIndex] is not ' ')
-                {
-                    return line.Trim();
-                }
-            }
-
-            return null;
-        }
     }
 
     [GeneratedRegex(@"^ {4}(?<name>[a-z0-9-]+) +(?<attr>\[[a-zA-Z]+\] )?\: (?<desc>\w+.*)$")]
     private static partial Regex MatchCommandRegex();
+
+    [GeneratedRegex(@"^ {4}(?<long>--[a-z-]+) (?<alias>-[a-z]|--[a-z-]+)? +(?<attr>\[[a-zA-Z]+\] )?\: (?<desc>\w+.*)$")]
+    private static partial Regex MatchOptionRegex();
 }
