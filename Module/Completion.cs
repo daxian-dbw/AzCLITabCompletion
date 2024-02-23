@@ -106,7 +106,9 @@ public class AzCompletion
                     return results;
                 }
 
-                WildcardPattern pattern = new(wordToComplete.EndsWith("*") ? wordToComplete : $"{wordToComplete}*");
+                var pattern = new WildcardPattern(
+                    wordToComplete.EndsWith("*") ? wordToComplete : $"{wordToComplete}*",
+                    WildcardOptions.IgnoreCase);
                 foreach (var entry in group.EntryInfos)
                 {
                     if (pattern.IsMatch(entry.Name))
@@ -151,7 +153,9 @@ public class AzCompletion
                         return results;
                     }
 
-                    WildcardPattern pattern = new(wordToComplete.EndsWith("*") ? wordToComplete : $"{wordToComplete}*");
+                    var pattern = new WildcardPattern(
+                        wordToComplete.EndsWith("*") ? wordToComplete : $"{wordToComplete}*",
+                        WildcardOptions.IgnoreCase);
                     foreach (var v in option.Arguments)
                     {
                         if (pattern.IsMatch(v))
@@ -216,7 +220,9 @@ public class AzCompletion
             }
         }
 
-        WildcardPattern paramPattern = new(wordToComplete.EndsWith("*") ? wordToComplete : $"{wordToComplete}*");
+        var paramPattern = new WildcardPattern(
+            wordToComplete.EndsWith("*") ? wordToComplete : $"{wordToComplete}*",
+            WildcardOptions.IgnoreCase);
         foreach (var option in ((Command)current).Options)
         {
             if (specifiedParameters.Contains(option.Name))

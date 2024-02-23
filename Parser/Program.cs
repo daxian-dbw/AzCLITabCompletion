@@ -22,17 +22,17 @@ internal class Program
         // Debugger.Break();
 
         Console.OutputEncoding = Encoding.UTF8;
-        // RunRemaining();
-        RunAll();
+        RunRemaining();
+        // RunAll();
     }
 
     static void RunRemaining()
     {
-        using FileStream stream = File.OpenRead(@"E:\yard\tmp\az-cli-out\az\az-entries.json");
+        using FileStream stream = File.OpenRead(@"E:\yard\tmp\repro\az\az-entries.json");
         List<EntryInfo> entries = JsonSerializer.Deserialize<List<EntryInfo>>(stream);
         HashSet<string> alreadyParsed =
         [
-            "account","acr","ad","advisor","afd","aks","ams","apim","appconfig","appservice","aro","backup","batch","bicep","billing","bot","cache","capacity","cdn","cloud","cognitiveservices","config","connection","consumption","container","containerapp","cosmosdb","databoxedge","deployment","deployment-scripts","disk","disk-access","disk-encryption-set","dla","dls","dms","eventgrid","eventhubs","extension","feature","functionapp","group","hdinsight","identity","image","iot"
+            "account","acr","ad","advisor","afd","aks","ams","apim","appconfig","appservice","aro","backup","batch","bicep","billing","bot","cache","capacity","cdn","cloud","cognitiveservices","config","connection","consumption","container","containerapp","cosmosdb","databoxedge","deployment","deployment-scripts","disk","disk-access","disk-encryption-set","dla","dls","dms","eventgrid","eventhubs","extension","feature","functionapp","group","hdinsight","identity","image","iot","keyvault","kusto","lab","lock","logicapp","managed-cassandra","managedapp","managedservices","maps","mariadb","monitor","mysql","netappfiles","network","policy","postgres","ppg","private-link","provider","redis","relay","resource","resourcemanagement","restore-point","role","search","security","servicebus"
         ];
 
         using HelpParser parser = new(@"C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin\az.cmd");
@@ -49,7 +49,7 @@ internal class Program
                     {
                         if (entry.Type is EntryType.Group && !alreadyParsed.Contains(entry.Name))
                         {
-                            parser.ParseGroup(entry.Name, baseCommand: "", path: @"E:\yard\tmp\az-cli-out\az");
+                            parser.ParseGroup(entry.Name, baseCommand: "", path: @"E:\yard\tmp\repro\az");
                         }
                     }
                 }
@@ -79,11 +79,9 @@ internal class Program
                 try
                 {
                     parser.StatusContext = ctx;
-                    parser.ParseGroup(group: "az", baseCommand: "", path: @"E:\yard\tmp\az-cli-out");
+                    parser.ParseGroup(group: "az", baseCommand: "", path: @"E:\yard\tmp\repro");
                     // parser.ParseGroup(group: "migration", baseCommand: "servicebus", path: @"E:\yard\tmp");
-                    // parser.ParseCommand("get-access-token", "abc", "account", @"E:\yard\tmp\az-cli-out");
                     // parser.ParseCommand("create", "Create an Azure Virtual Machine.", "vm", @"E:\yard\tmp");
-                    // parser.ParseCommand("import", "Create an Azure Virtual Machine.", "synapse sql-script", @"E:\yard\tmp");
                 }
                 catch (Exception ex)
                 {
@@ -622,10 +620,17 @@ public sealed partial class HelpParser : IDisposable
             examples = text.ToString();
         }
 
-        Command cmd = new(name, description, options, examples);
-        string jsonFile = Path.Combine(path, $"{name}.json");
-        using FileStream stream = File.OpenWrite(jsonFile);
-        JsonSerializer.Serialize(stream, cmd, _jsonOptions);
+        try
+        {
+            var cmd = new Command(name, description, options, examples);
+            string jsonFile = Path.Combine(path, $"{name}.json");
+            using FileStream stream = File.OpenWrite(jsonFile);
+            JsonSerializer.Serialize(stream, cmd, _jsonOptions);
+        }
+        catch (Exception e)
+        {
+            _logger.Error("Failed to handle command '{0}'\n  Base Command: {1}\n  Error: {2},", name, baseCommand, e.Message);
+        }
     }
 
     /// <summary>
