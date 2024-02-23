@@ -3,3 +3,5 @@ bin/
 obj/
 .vs/
 .vscode/
+*.sln
+!az.completion.sln

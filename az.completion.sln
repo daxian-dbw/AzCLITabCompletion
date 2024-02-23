@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstraction", "Abstraction\Abstraction.csproj", "{7FD5286F-6376-47E2-833B-08BE7A9FB3D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module", "Module\Module.csproj", "{0A67D7AC-B5C0-4983-BD82-0C94CB04FBCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parser", "Parser\Parser.csproj", "{418CA470-849C-456E-BD3D-ED9119188A9C}" 
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A67D7AC-B5C0-4983-BD82-0C94CB04FBCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A67D7AC-B5C0-4983-BD82-0C94CB04FBCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A67D7AC-B5C0-4983-BD82-0C94CB04FBCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A67D7AC-B5C0-4983-BD82-0C94CB04FBCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70B72210-F0F9-4518-BB12-A17B6B4E7FEF}
+	EndGlobalSection
+EndGlobal
