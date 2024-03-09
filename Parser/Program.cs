@@ -22,8 +22,8 @@ internal class Program
         // Debugger.Break();
 
         Console.OutputEncoding = Encoding.UTF8;
-        RunRemaining();
-        // RunAll();
+        // RunRemaining();
+        RunAll();
     }
 
     static void RunRemaining()

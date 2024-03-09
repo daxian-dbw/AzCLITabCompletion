@@ -1,0 +1,267 @@
+2024-02-23 11:04:08.644 -08:00 [INF] Logger started
+2024-02-23 11:05:19.487 -08:00 [INF] Deprecated command/group found.
+  Command: acr
+  Line:    helm            [Deprecated] : Manage helm charts for Azure Container Registries.
+2024-02-23 11:09:06.550 -08:00 [INF] Deprecated option found.
+  Command: ad sp create-for-rbac
+  Line:    --json-auth --sdk-auth [Deprecated] : Output service principal credential along with cloud
+2024-02-23 11:11:22.045 -08:00 [INF] Deprecated command/group found.
+  Command: aks
+  Line:    remove-dev-spaces [Deprecated] : Remove Azure Dev Spaces from a managed Kubernetes cluster.
+2024-02-23 11:11:22.045 -08:00 [INF] Deprecated command/group found.
+  Command: aks
+  Line:    use-dev-spaces    [Deprecated] : Use Azure Dev Spaces with a managed Kubernetes cluster.
+2024-02-23 11:14:02.049 -08:00 [INF] Failed to match the allowed values.
+  Command: ams live-event create
+  Option: --transcription-lang
+  Description: Live transcription language for the live event. Allowed values: ca-ES, da-DK, de-DE, en-AU, en-CA, en-GB, en-IN, en- NZ, en-US, es-ES, es-MX, fi-FI, fr-CA, fr-FR, it-IT, nl-NL, pt-BR, pt-PT, sv-SE See https://go.microsoft.com/fwlink/?linkid=2133742 for more information about the live transcription feature.
+2024-02-23 11:17:40.315 -08:00 [INF] Deprecated option found.
+  Command: appservice ase create-inbound-services
+  Line:    --skip-dns        [Deprecated] : Do not create Private DNS Zone and DNS records.  Allowed
+2024-02-23 11:19:47.759 -08:00 [INF] Deprecated command/group found.
+  Command: batch
+  Line:    certificate    [Deprecated] : Manage Batch certificates.
+2024-02-23 11:26:28.822 -08:00 [INF] Deprecated command/group found.
+  Command: cdn waf
+  Line:    policy [Deprecated] [Preview] : Manage CDN WAF policies.
+2024-02-23 11:32:41.044 -08:00 [INF] Deprecated option found.
+  Command: containerapp compose create
+  Line:    --transport       [Deprecated] : Transport options per Container App instance
+2024-02-23 11:32:53.923 -08:00 [INF] Deprecated command/group found.
+  Command: containerapp connection create
+  Line:    mysql    [Deprecated] : Create a containerapp connection to mysql.
+2024-02-23 11:32:53.923 -08:00 [INF] Deprecated command/group found.
+  Command: containerapp connection create
+  Line:    postgres [Deprecated] : Create a containerapp connection to postgres.
+2024-02-23 11:33:19.618 -08:00 [INF] Deprecated command/group found.
+  Command: containerapp connection update
+  Line:    mysql    [Deprecated] : Update a containerapp to mysql connection.
+2024-02-23 11:33:19.619 -08:00 [INF] Deprecated command/group found.
+  Command: containerapp connection update
+  Line:    postgres [Deprecated] : Update a containerapp to postgres connection.
+2024-02-23 11:35:12.528 -08:00 [INF] Deprecated option found.
+  Command: containerapp ingress traffic set
+  Line:    --traffic-weight [Deprecated] : A list of revision weight(s) for the container app. Space-
+2024-02-23 11:41:09.667 -08:00 [INF] Deprecated option found.
+  Command: deployment group create
+  Line:    --aux-subs                       [Deprecated] : Auxiliary subscriptions which will be used
+2024-02-23 11:41:09.667 -08:00 [INF] Deprecated option found.
+  Command: deployment group create
+  Line:    --handle-extended-json-format -j [Deprecated] : Support to handle extended template content
+2024-02-23 11:41:14.905 -08:00 [INF] Deprecated option found.
+  Command: deployment group validate
+  Line:    --handle-extended-json-format -j [Deprecated] : Support to handle extended template content
+2024-02-23 11:41:20.827 -08:00 [INF] Deprecated option found.
+  Command: deployment mg create
+  Line:    --handle-extended-json-format -j [Deprecated] : Support to handle extended template content
+2024-02-23 11:41:26.524 -08:00 [INF] Deprecated option found.
+  Command: deployment mg validate
+  Line:    --handle-extended-json-format -j [Deprecated] : Support to handle extended template content
+2024-02-23 11:41:46.092 -08:00 [INF] Deprecated option found.
+  Command: deployment sub create
+  Line:    --handle-extended-json-format -j [Deprecated] : Support to handle extended template content
+2024-02-23 11:41:51.262 -08:00 [INF] Deprecated option found.
+  Command: deployment sub validate
+  Line:    --handle-extended-json-format -j [Deprecated] : Support to handle extended template content
+2024-02-23 11:41:56.852 -08:00 [INF] Deprecated option found.
+  Command: deployment tenant create
+  Line:    --handle-extended-json-format -j [Deprecated] : Support to handle extended template content
+2024-02-23 11:42:02.453 -08:00 [INF] Deprecated option found.
+  Command: deployment tenant validate
+  Line:    --handle-extended-json-format -j [Deprecated] : Support to handle extended template content
+2024-02-23 11:45:57.731 -08:00 [INF] Deprecated option found.
+  Command: eventgrid domain create
+  Line:    --identity [Deprecated] [Preview] : The managed identity type for the resource. Will be
+2024-02-23 11:46:05.003 -08:00 [INF] Deprecated option found.
+  Command: eventgrid domain update
+  Line:    --identity [Deprecated] [Preview] : The managed identity type for the resource. Will be
+2024-02-23 11:46:53.322 -08:00 [INF] Deprecated command/group found.
+  Command: eventgrid partner namespace
+  Line:    event-channel [Deprecated] : Manage partner event channels.
+2024-02-23 11:47:09.629 -08:00 [INF] Deprecated option found.
+  Command: eventgrid partner registration create
+  Line:    --customer-service-extension [Deprecated] : The extension of the customer service number of the
+2024-02-23 11:47:09.629 -08:00 [INF] Deprecated option found.
+  Command: eventgrid partner registration create
+  Line:    --customer-service-number    [Deprecated] : The customer service number of the publisher. The
+2024-02-23 11:47:09.629 -08:00 [INF] Deprecated option found.
+  Command: eventgrid partner registration create
+  Line:    --customer-service-uri       [Deprecated] : The customer service URI of the publisher.
+2024-02-23 11:47:09.629 -08:00 [INF] Deprecated option found.
+  Command: eventgrid partner registration create
+  Line:    --description                [Deprecated] : Description of the partner topic type.
+2024-02-23 11:47:09.629 -08:00 [INF] Deprecated option found.
+  Command: eventgrid partner registration create
+  Line:    --display-name               [Deprecated] : Display name for the partner topic type.
+2024-02-23 11:47:09.629 -08:00 [INF] Deprecated option found.
+  Command: eventgrid partner registration create
+  Line:    --logo-uri                   [Deprecated] : URI of the partner logo.
+2024-02-23 11:47:09.629 -08:00 [INF] Deprecated option found.
+  Command: eventgrid partner registration create
+  Line:    --long-description           [Deprecated] : Description of the custom scenarios and integration.
+2024-02-23 11:47:09.629 -08:00 [INF] Deprecated option found.
+  Command: eventgrid partner registration create
+  Line:    --partner-name               [Deprecated] : Official name of the partner.
+2024-02-23 11:47:09.629 -08:00 [INF] Deprecated option found.
+  Command: eventgrid partner registration create
+  Line:    --resource-type-name         [Deprecated] : Name of the partner topic resource type. This name
+2024-02-23 11:47:09.629 -08:00 [INF] Deprecated option found.
+  Command: eventgrid partner registration create
+  Line:    --setup-uri                  [Deprecated] : URI of the partner website that can be used by Azure
+2024-02-23 11:47:28.819 -08:00 [INF] Deprecated option found.
+  Command: eventgrid system-topic create
+  Line:    --identity [Deprecated] [Preview] : The managed identity type for the resource. Will be
+2024-02-23 11:47:34.926 -08:00 [INF] Deprecated option found.
+  Command: eventgrid system-topic update
+  Line:    --identity [Deprecated] [Preview] : The managed identity type for the resource. Will be
+2024-02-23 11:47:42.843 -08:00 [INF] Deprecated option found.
+  Command: eventgrid topic create
+  Line:    --identity  [Deprecated] [Preview] : The managed identity type for the resource. Will be
+2024-02-23 11:47:49.150 -08:00 [INF] Deprecated option found.
+  Command: eventgrid topic update
+  Line:    --identity [Deprecated] [Preview] : The managed identity type for the resource. Will be
+2024-02-23 11:50:10.621 -08:00 [INF] Deprecated option found.
+  Command: functionapp create
+  Line:    --deployment-container-image-name [Deprecated] : Container image, e.g. publisher/image-name:tag.
+2024-02-23 11:50:10.621 -08:00 [INF] Deprecated option found.
+  Command: functionapp create
+  Line:    --docker-registry-server-password [Deprecated] : The container registry server password.
+2024-02-23 11:50:10.621 -08:00 [INF] Deprecated option found.
+  Command: functionapp create
+  Line:    --docker-registry-server-user     [Deprecated] : The container registry server username.
+2024-02-23 11:50:52.771 -08:00 [INF] Deprecated option found.
+  Command: functionapp config container set
+  Line:    --docker-custom-image-name        [Deprecated] : The container custom image name and optionally
+2024-02-23 11:50:52.771 -08:00 [INF] Deprecated option found.
+  Command: functionapp config container set
+  Line:    --docker-registry-server-password [Deprecated] : The container registry server password.
+2024-02-23 11:50:52.771 -08:00 [INF] Deprecated option found.
+  Command: functionapp config container set
+  Line:    --docker-registry-server-url      [Deprecated] : The container registry server url.
+2024-02-23 11:50:52.771 -08:00 [INF] Deprecated option found.
+  Command: functionapp config container set
+  Line:    --docker-registry-server-user     [Deprecated] : The container registry server username.
+2024-02-23 11:51:23.795 -08:00 [INF] Deprecated command/group found.
+  Command: functionapp connection create
+  Line:    mysql    [Deprecated] : Create a functionapp connection to mysql.
+2024-02-23 11:51:23.795 -08:00 [INF] Deprecated command/group found.
+  Command: functionapp connection create
+  Line:    postgres [Deprecated] : Create a functionapp connection to postgres.
+2024-02-23 11:51:47.461 -08:00 [INF] Deprecated command/group found.
+  Command: functionapp connection update
+  Line:    mysql    [Deprecated] : Update a functionapp to mysql connection.
+2024-02-23 11:51:47.461 -08:00 [INF] Deprecated command/group found.
+  Command: functionapp connection update
+  Line:    postgres [Deprecated] : Update a functionapp to postgres connection.
+2024-02-23 11:52:37.546 -08:00 [INF] Deprecated option found.
+  Command: functionapp deployment slot create
+  Line:    --deployment-container-image-name [Deprecated] : Container image, e.g. publisher/image-name:tag.
+2024-02-23 11:52:37.546 -08:00 [INF] Deprecated option found.
+  Command: functionapp deployment slot create
+  Line:    --docker-registry-server-password [Deprecated] : The container registry server password.
+2024-02-23 11:52:37.546 -08:00 [INF] Deprecated option found.
+  Command: functionapp deployment slot create
+  Line:    --docker-registry-server-user     [Deprecated] : The container registry server username.
+2024-02-23 12:00:20.122 -08:00 [INF] Deprecated command/group found.
+  Command: kusto
+  Line:    cluster  [Deprecated] : Manage Azure Kusto clusters.
+2024-02-23 12:00:20.122 -08:00 [INF] Deprecated command/group found.
+  Command: kusto
+  Line:    database [Deprecated] : Manage Azure Kusto databases.
+2024-02-23 12:07:48.454 -08:00 [INF] Unexpected completion results for `az monitor metrics list --dimension`: options returned while expecting argument values. Example: -h
+2024-02-23 12:11:46.292 -08:00 [INF] Deprecated option found.
+  Command: netappfiles account create
+  Line:    --encryption              [Deprecated] : This argument will be deprecated, please use --key-
+2024-02-23 12:11:54.016 -08:00 [INF] Deprecated option found.
+  Command: netappfiles account update
+  Line:    --encryption             [Deprecated] : Encryption settings.
+2024-02-23 12:37:19.118 -08:00 [INF] Deprecated option found.
+  Command: network watcher flow-log show
+  Line:    --nsg  [Deprecated] : Name or ID of the network security group.
+2024-02-23 14:28:29.914 -08:00 [INF] Logger started
+2024-02-23 14:29:30.137 -08:00 [ERR] Failed to handle command update
+  Base Command: sf managed-application
+  Error: Argument cannot not be an empty list. (Parameter 'options'),
+2024-02-23 14:39:55.090 -08:00 [INF] Deprecated option found.
+  Command: sql vm create
+  Line:    --sql-mgmt-type    [Deprecated] : SQL Server management type. If NoAgent selected, please
+2024-02-23 14:40:02.043 -08:00 [INF] Deprecated option found.
+  Command: sql vm update
+  Line:    --sql-mgmt-type                   [Deprecated] : SQL Server management type. Updates from
+2024-02-23 14:40:02.043 -08:00 [INF] Deprecated option found.
+  Command: sql vm update
+  Line:    --yes -y                          [Deprecated] : Do not prompt for confirmation. Requires --sql-
+2024-02-23 14:42:01.042 -08:00 [INF] Deprecated option found.
+  Command: storage copy
+  Line:    --destination-local-path   [Deprecated] : The path/url of copy destination. It can be a local
+2024-02-23 14:42:01.043 -08:00 [INF] Deprecated option found.
+  Command: storage copy
+  Line:    --source-local-path        [Deprecated] : The path/url of copy source. It can be a local path,
+2024-02-23 14:42:01.043 -08:00 [INF] Deprecated option found.
+  Command: storage copy
+  Line:    --destination-account-name [Deprecated] : Storage account name of copy destination.
+2024-02-23 14:45:05.289 -08:00 [INF] Deprecated option found.
+  Command: storage container create
+  Line:    --resource-group -g                 [Deprecated] : Name of resource group. You can configure the
+2024-02-23 14:50:18.149 -08:00 [INF] Deprecated command/group found.
+  Command: synapse dataset
+  Line:    set [Deprecated] : Update an exist dataset.
+2024-02-23 14:50:24.619 -08:00 [INF] Deprecated command/group found.
+  Command: synapse integration-runtime
+  Line:    create [Deprecated] : Create an integration runtime.
+2024-02-23 14:52:39.864 -08:00 [INF] Deprecated command/group found.
+  Command: synapse linked-service
+  Line:    set [Deprecated] : Update an exist linked service.
+2024-02-23 14:53:00.982 -08:00 [INF] Deprecated command/group found.
+  Command: synapse pipeline
+  Line:    set [Deprecated] : Update an exist pipeline.
+2024-02-23 14:54:57.590 -08:00 [INF] Deprecated command/group found.
+  Command: synapse trigger
+  Line:    set              [Deprecated] : Update an exist trigger.
+2024-02-23 14:57:42.796 -08:00 [INF] Deprecated option found.
+  Command: vm diagnostics set
+  Line:    --no-auto-upgrade  [Deprecated] : If set, the extension service will not automatically pick or
+2024-02-23 14:57:55.455 -08:00 [INF] Deprecated option found.
+  Command: vm extension set
+  Line:    --no-auto-upgrade  [Deprecated] : If set, the extension service will not automatically pick or
+2024-02-23 14:58:49.282 -08:00 [INF] Deprecated command/group found.
+  Command: vm image
+  Line:    accept-terms [Deprecated] : Accept Azure Marketplace term so that the image can be used to
+2024-02-23 14:59:25.576 -08:00 [INF] Unexpected completion results for `az vm monitor metrics tail --dimension`: options returned while expecting argument values. Example: -h
+2024-02-23 14:59:26.706 -08:00 [INF] Unexpected completion results for `az vm monitor metrics tail --metrics`: options returned while expecting argument values. Example: -h
+2024-02-23 15:00:58.087 -08:00 [INF] Deprecated option found.
+  Command: vmss diagnostics set
+  Line:    --no-auto-upgrade  [Deprecated] : If set, the extension service will not automatically pick or
+2024-02-23 15:01:11.743 -08:00 [INF] Deprecated option found.
+  Command: vmss extension set
+  Line:    --no-auto-upgrade  [Deprecated] : If set, the extension service will not automatically pick or
+2024-02-23 15:02:14.062 -08:00 [INF] Deprecated option found.
+  Command: webapp delete
+  Line:    --keep-dns-registration [Deprecated] : Keep DNS registration.
+2024-02-23 15:02:19.841 -08:00 [INF] Deprecated option found.
+  Command: webapp list-runtimes
+  Line:    --linux [Deprecated] : List runtime stacks for linux based web apps.
+2024-02-23 15:02:33.387 -08:00 [INF] Deprecated option found.
+  Command: webapp update
+  Line:    --force-dns-registration          [Deprecated] : If true, web app hostname is force registered
+2024-02-23 15:02:33.387 -08:00 [INF] Deprecated option found.
+  Command: webapp update
+  Line:    --skip-custom-domain-verification [Deprecated] : If true, custom (non *.azurewebsites.net)
+2024-02-23 15:02:33.387 -08:00 [INF] Deprecated option found.
+  Command: webapp update
+  Line:    --skip-dns-registration           [Deprecated] : If true web app hostname is not registered with
+2024-02-23 15:02:33.387 -08:00 [INF] Deprecated option found.
+  Command: webapp update
+  Line:    --ttl-in-seconds                  [Deprecated] : Time to live in seconds for web app's default
+2024-02-23 15:04:04.068 -08:00 [INF] Deprecated command/group found.
+  Command: webapp connection create
+  Line:    mysql    [Deprecated] : Create a webapp connection to mysql.
+2024-02-23 15:04:04.068 -08:00 [INF] Deprecated command/group found.
+  Command: webapp connection create
+  Line:    postgres [Deprecated] : Create a webapp connection to postgres.
+2024-02-23 15:04:27.562 -08:00 [INF] Deprecated command/group found.
+  Command: webapp connection update
+  Line:    mysql    [Deprecated] : Update a webapp to mysql connection.
+2024-02-23 15:04:27.562 -08:00 [INF] Deprecated command/group found.
+  Command: webapp connection update
+  Line:    postgres [Deprecated] : Update a webapp to postgres connection.
