@@ -29,17 +29,17 @@ To use the parser, simply run `dotnet run` within the `Parser` folder.
 But before running it, you may want to change some configurations that are hard-coded today:
 
 1. This parser prototype assumes to run on Windows.
-1. You need to pass in the path to `az.cmd` when creating the `HelpParser`. (see code)
-1. The default logging file is setup here in the code. You may want to change the log file path before starting.
+1. You need to pass in the path to `az.cmd` when creating the `HelpParser`. (see [code](https://github.com/daxian-dbw/AzCLITabCompletion/blob/ea354119c8a6b81696217ca48b43a05cfe15b3dd/Parser/Program.cs#L72))
+1. The default logging file is setup [here](https://github.com/daxian-dbw/AzCLITabCompletion/blob/ea354119c8a6b81696217ca48b43a05cfe15b3dd/Parser/Program.cs#L138-L139) in the code. You may want to change the log file path before starting.
 1. It starts from parsing the `az` command, then it goes through all sub-group and sub-command of `az`,
    so on and so forth until it's done for all commands.
-   When parsing the root command `az`, you need to specify the directory where all metadata will be generated in. (see code)
+   When parsing the root command `az`, you need to specify the directory where all metadata will be generated in. (see [code](https://github.com/daxian-dbw/AzCLITabCompletion/blob/ea354119c8a6b81696217ca48b43a05cfe15b3dd/Parser/Program.cs#L82))
 
 #### Generated Data
 
 For every subgroup command, the parser creates a sub directory for it.
 Within that directory, it generates a `<subgroup-name>-entries.json` file,
-which is essentially a list of [`EntryInfo`](code) objects recording a brief summary of all the subgroup and leaf commands under the current subgroup command.
+which is essentially a list of [`EntryInfo`](https://github.com/daxian-dbw/AzCLITabCompletion/blob/ea354119c8a6b81696217ca48b43a05cfe15b3dd/Abstraction/Command.cs#L35) objects recording a brief summary of all the subgroup and leaf commands under the current subgroup command.
 
 For every leaf command, the parser generate a `<command-name>.json` file within the directory of its parent subgroup command.
 The JSON file has information about all options of the command, including the aliases of the option, the short flags of the option,
@@ -56,7 +56,7 @@ A package of the generated data `data.zip` is shared in the [samples folder](./a
 The parser parses the `Examples` section in the help content by default,
 and it transforms the example text into the markdown format with the commands surrounded by `` ``` ``.
 It can be disabled to reduce the size of the generated data,
-see the `noExample` parameter in code.
+see the `noExample` parameter in [code](https://github.com/daxian-dbw/AzCLITabCompletion/blob/ea354119c8a6b81696217ca48b43a05cfe15b3dd/Parser/Program.cs#L72).
 
 #### Deprecated Commands and Options
 
@@ -87,7 +87,7 @@ The module will be deployed in the `Module/out` folder after the build.
 
 Within [AzTabCompletion.psm1](./Module/AzTabCompletion.psm1),
 you currently need to pass in the path to the root folder of the generated data,
-so you will need to change the path appropriately before building the module. (see code)
+so you will need to change the path appropriately before building the module. (see [code](https://github.com/daxian-dbw/AzCLITabCompletion/blob/ea354119c8a6b81696217ca48b43a05cfe15b3dd/Module/AzTabCompletion.psm1#L5))
 
 As mentioned above, being fast is the goal of this module, so the module is designed to load data lazily.
 It only load the needed data for a specific tab completion request.
