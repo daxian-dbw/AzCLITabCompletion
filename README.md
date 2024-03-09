@@ -13,6 +13,10 @@ The idea is simple:
 - Implement the tab completion module in C# based on the generated data set,
   and ship the data set along with the module for the specific version of the Azure CLI that we collected the data from.
 
+A quick demo of the tab completion module in Action:
+
+![AzCLITabCompletion](./assets/AzCLITabCompletion.gif)
+
 ## Code Structure
 
 There are 3 .NET projects:
@@ -94,18 +98,14 @@ It only load the needed data for a specific tab completion request.
 Once that portion of data is loaded, it's cached,
 so the next tab completion requiring the same data will be served using the cached data.
 
-This module supports tab completion on sub command names, option names, and option arguments.
+This module supports tab completion on **sub command names**, **option names**, and **option arguments**.
 It's able to filter out the options that are already present in the command line,
-and provides tooltips for command name and option completions,
+and provides **tooltips** for command name and option completions,
 which is especially helpful given that Azure CLI exposes lots of sub commands and options.
 
 Currently, the option argument completion only supports the fixed enum arguments,
 however, it's easy to support dynamic arguments by falling back to invoking `az`,
 for options like `--resource-group` as an example.
-
-A quick demo of the tab completion module in Action:
-
-![AzCLITabCompletion](./assets/AzCLITabCompletion.gif)
 
 To try it out yourself, please
 1. Download the `data.zip` package from the [sample folder](./assets/samples/) and extract all its content.
